@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.itsamankrsingh.livetvapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LiveTVApp"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Details"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.LiveTVApp.NoActionBar">

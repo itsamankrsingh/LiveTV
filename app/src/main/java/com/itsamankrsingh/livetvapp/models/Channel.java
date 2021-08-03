@@ -1,6 +1,8 @@
 package com.itsamankrsingh.livetvapp.models;
 
-public class Channel {
+import java.io.Serializable;
+
+public class Channel implements Serializable {
     private int id;
     private String name;
     private String description;

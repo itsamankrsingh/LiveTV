@@ -1,5 +1,6 @@
 package com.itsamankrsingh.livetvapp.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.itsamankrsingh.livetvapp.Details;
 import com.itsamankrsingh.livetvapp.R;
 import com.itsamankrsingh.livetvapp.models.Channel;
 import com.squareup.picasso.Picasso;
@@ -42,6 +44,15 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ViewHold
     public void onBindViewHolder(@NonNull ChannelAdapter.ViewHolder holder, int position) {
         holder.channelName.setText(channels.get(position).getName());
         Picasso.get().load(channels.get(position).getThumbnail()).into(holder.channelImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), Details.class);
+                intent.putExtra("channel",channels.get(position));
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
