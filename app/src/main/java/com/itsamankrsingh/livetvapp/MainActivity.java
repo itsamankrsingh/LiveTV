@@ -26,9 +26,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-    RecyclerView bigSliderList, newsChannelList;
-    ChannelAdapter bigSliderAdapter, newsChannelAdapter;
-    List<Channel> channelList, newsChannels;
+    RecyclerView bigSliderList, newsChannelList, sportsChannelList, entertainmentChannelList;
+    ChannelAdapter bigSliderAdapter, newsChannelAdapter, sportsChannelAdapter, entertainmentChannelAdapter;
+    List<Channel> channelList, newsChannels, sportsChannels, entertainmentChannels;
     ChannelDataService service;
 
     @Override
@@ -47,14 +47,10 @@ public class MainActivity extends AppCompatActivity {
         bigSliderList.setAdapter(bigSliderAdapter);
 
 
-        newsChannelList = findViewById(R.id.news_channel_list);
-        newsChannels = new ArrayList<>();
-        newsChannelList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        newsChannelAdapter = new ChannelAdapter(newsChannels, "category");
-        newsChannelList.setAdapter(newsChannelAdapter);
-
         getSliderData("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&channels=all");
         getNewsChannel("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&cat=News");
+        getSportsChannel("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&cat=Sports");
+        getEntertainmentChannel("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&cat=Entertainment");
     }
 
     public void getSliderData(String url) {
@@ -100,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void getNewsChannel(String url) {
 
+        newsChannelList = findViewById(R.id.news_channel_list);
+        newsChannels = new ArrayList<>();
+        newsChannelList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        newsChannelAdapter = new ChannelAdapter(newsChannels, "category");
+        newsChannelList.setAdapter(newsChannelAdapter);
+
 
         service.getChannelData(url, new ChannelDataService.OnDataResponse() {
             @Override
@@ -141,6 +143,109 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void getSportsChannel(String url) {
+
+        sportsChannelList = findViewById(R.id.sports_channel_list);
+        sportsChannels = new ArrayList<>();
+        sportsChannelList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        sportsChannelAdapter = new ChannelAdapter(sportsChannels, "category");
+        sportsChannelList.setAdapter(sportsChannelAdapter);
+
+
+        service.getChannelData(url, new ChannelDataService.OnDataResponse() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject channelData = response.getJSONObject(String.valueOf(i));
+                        Channel c = new Channel();
+
+                        c.setId(channelData.getInt("id"));
+                        c.setName(channelData.getString("name"));
+                        c.setDescription(channelData.getString("description"));
+                        c.setThumbnail(channelData.getString("thumbnail"));
+                        c.setLive_url(channelData.getString("live_url"));
+                        c.setFacebook(channelData.getString("facebook"));
+                        c.setTwitter(channelData.getString("twitter"));
+                        c.setYoutube(channelData.getString("youtube"));
+                        c.setWebsite(channelData.getString("website"));
+                        c.setCategory(channelData.getString("category"));
+
+                        sportsChannels.add(c);
+                        sportsChannelAdapter.notifyDataSetChanged();
+
+                        Log.d(TAG, "onResponse: " + c.toString());
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.d(TAG, "onErrorResponse: " + error);
+            }
+        });
+
+
+    }
+
+    public void getEntertainmentChannel(String url) {
+
+        entertainmentChannelList = findViewById(R.id.entertainment_channel_list);
+        entertainmentChannels = new ArrayList<>();
+        entertainmentChannelList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        entertainmentChannelAdapter = new ChannelAdapter(entertainmentChannels, "category");
+        entertainmentChannelList.setAdapter(entertainmentChannelAdapter);
+
+
+        service.getChannelData(url, new ChannelDataService.OnDataResponse() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject channelData = response.getJSONObject(String.valueOf(i));
+                        Channel c = new Channel();
+
+                        c.setId(channelData.getInt("id"));
+                        c.setName(channelData.getString("name"));
+                        c.setDescription(channelData.getString("description"));
+                        c.setThumbnail(channelData.getString("thumbnail"));
+                        c.setLive_url(channelData.getString("live_url"));
+                        c.setFacebook(channelData.getString("facebook"));
+                        c.setTwitter(channelData.getString("twitter"));
+                        c.setYoutube(channelData.getString("youtube"));
+                        c.setWebsite(channelData.getString("website"));
+                        c.setCategory(channelData.getString("category"));
+
+                        entertainmentChannels.add(c);
+                        entertainmentChannelAdapter.notifyDataSetChanged();
+
+                        Log.d(TAG, "onResponse: " + c.toString());
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.d(TAG, "onErrorResponse: " + error);
+            }
+        });
 
 
     }
