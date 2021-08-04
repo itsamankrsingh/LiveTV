@@ -14,7 +14,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Details"
-            android:exported="true" />
+            android:exported="true"
+            android:configChanges="keyboardHidden |orientation |screenSize"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.LiveTVApp.NoActionBar">
