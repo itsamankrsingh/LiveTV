@@ -1,11 +1,16 @@
 package com.itsamankrsingh.livetvapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.itsamankrsingh.livetvapp.adapters.ChannelAdapter;
 import com.itsamankrsingh.livetvapp.models.Channel;
 import com.itsamankrsingh.livetvapp.services.ChannelDataService;
@@ -23,18 +29,32 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = "MainActivity";
     RecyclerView bigSliderList, newsChannelList, sportsChannelList, entertainmentChannelList;
     ChannelAdapter bigSliderAdapter, newsChannelAdapter, sportsChannelAdapter, entertainmentChannelAdapter;
     List<Channel> channelList, newsChannels, sportsChannels, entertainmentChannels;
     ChannelDataService service;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigation_drawer);
+        navigationView.setNavigationItemSelectedListener(this);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        toggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         channelList = new ArrayList<>();
 
@@ -248,6 +268,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.home_item) {
+
+        }
+        if (item.getItemId() == R.id.category_item) {
+
+        }
+
+        return false;
     }
 }
 
