@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.itsamankrsingh.livetvapp.Details;
+import com.itsamankrsingh.livetvapp.DetailsActivity;
 import com.itsamankrsingh.livetvapp.R;
 import com.itsamankrsingh.livetvapp.models.Channel;
 import com.squareup.picasso.Picasso;
@@ -48,7 +48,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(), Details.class);
+                Intent intent=new Intent(v.getContext(), DetailsActivity.class);
                 intent.putExtra("channel",channels.get(position));
                 v.getContext().startActivity(intent);
             }

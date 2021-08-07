@@ -24,7 +24,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.itsamankrsingh.livetvapp.models.Channel;
 
-public class Details extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity {
 
     PlayerView playerView;
     TextView description;
@@ -53,7 +53,7 @@ public class Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isFullScreen) {
-                    Toast.makeText(Details.this, "We are now going back to normal mode", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailsActivity.this, "We are now going back to normal mode", Toast.LENGTH_SHORT).show();
 
                     getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
 

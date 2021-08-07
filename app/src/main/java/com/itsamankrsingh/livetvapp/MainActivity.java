@@ -1,13 +1,20 @@
 package com.itsamankrsingh.livetvapp;
 
+import static com.itsamankrsingh.livetvapp.Constants.ALL_CHANNELS_URL;
+import static com.itsamankrsingh.livetvapp.Constants.ENTERTAINMENT_CHANNELS_URL;
+import static com.itsamankrsingh.livetvapp.Constants.NEWS_CHANNELS_URL;
+import static com.itsamankrsingh.livetvapp.Constants.SPORTS_CHANNELS_URL;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -67,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bigSliderList.setAdapter(bigSliderAdapter);
 
 
-        getSliderData("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&channels=all");
-        getNewsChannel("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&cat=News");
-        getSportsChannel("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&cat=Sports");
-        getEntertainmentChannel("http://192.168.43.198/mytv/api.php?key=1A4mgi2rBHCJdqggsYVx&id=1&cat=Entertainment");
+        getSliderData(ALL_CHANNELS_URL);
+        getNewsChannel(NEWS_CHANNELS_URL);
+        getSportsChannel(SPORTS_CHANNELS_URL);
+        getEntertainmentChannel(ENTERTAINMENT_CHANNELS_URL);
     }
 
     public void getSliderData(String url) {
@@ -272,12 +279,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        drawerLayout.closeDrawer(GravityCompat.START);
         if (item.getItemId() == R.id.home_item) {
 
         }
         if (item.getItemId() == R.id.category_item) {
-
+            startActivity(new Intent(this, CategoriesActivity.class));
         }
 
         return false;
