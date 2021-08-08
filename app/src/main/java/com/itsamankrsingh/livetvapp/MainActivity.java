@@ -1,6 +1,7 @@
 package com.itsamankrsingh.livetvapp;
 
 import static com.itsamankrsingh.livetvapp.Constants.ALL_CHANNELS_URL;
+import static com.itsamankrsingh.livetvapp.Constants.CATEGORY_TYPE;
 import static com.itsamankrsingh.livetvapp.Constants.ENTERTAINMENT_CHANNELS_URL;
 import static com.itsamankrsingh.livetvapp.Constants.NEWS_CHANNELS_URL;
 import static com.itsamankrsingh.livetvapp.Constants.SPORTS_CHANNELS_URL;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sportsChannelList = findViewById(R.id.sports_channel_list);
         sportsChannels = new ArrayList<>();
         sportsChannelList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        sportsChannelAdapter = new ChannelAdapter(sportsChannels, "category");
+        sportsChannelAdapter = new ChannelAdapter(sportsChannels, CATEGORY_TYPE);
         sportsChannelList.setAdapter(sportsChannelAdapter);
 
 

@@ -1,5 +1,6 @@
 package com.itsamankrsingh.livetvapp.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.itsamankrsingh.livetvapp.CategoryDetailsActivity;
 import com.itsamankrsingh.livetvapp.R;
 import com.itsamankrsingh.livetvapp.models.Category;
 import com.squareup.picasso.Picasso;
@@ -26,7 +28,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.category_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_view, parent, false);
         return new ViewHolder(view);
     }
 
@@ -34,6 +36,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.catTitle.setText(categoryList.get(position).getName());
         Picasso.get().load(categoryList.get(position).getImage_url()).into(holder.catImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryDetailsActivity.class);
+                intent.putExtra("category", categoryList.get(position));
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -44,10 +55,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView catImage;
         TextView catTitle;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            catImage=itemView.findViewById(R.id.catImage);
-            catTitle=itemView.findViewById(R.id.catTitle);
+            catImage = itemView.findViewById(R.id.catImage);
+            catTitle = itemView.findViewById(R.id.catTitle);
         }
     }
 }

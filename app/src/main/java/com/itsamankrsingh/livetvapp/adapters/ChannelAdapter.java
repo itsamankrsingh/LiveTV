@@ -1,5 +1,8 @@
 package com.itsamankrsingh.livetvapp.adapters;
 
+import static com.itsamankrsingh.livetvapp.Constants.DETAILS_TYPE;
+import static com.itsamankrsingh.livetvapp.Constants.SLIDER_TYPE;
+
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +35,12 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        if (type.equals("slider")) {
+        if (type.equals(SLIDER_TYPE)) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.big_slider_view, parent, false);
-        } else {
+        }else if(type.equals(DETAILS_TYPE)) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_details_view, parent, false);
+        }
+        else {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_cat_view, parent, false);
         }
         return new ViewHolder(v);

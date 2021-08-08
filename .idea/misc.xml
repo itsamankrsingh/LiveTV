@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/Users/HP/.gradle/caches/transforms-3/4b9269d8650bf847493635b3bdc83655/transformed/exoplayer-ui-2.14.2/res/layout/exo_player_view.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/activity_categories.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/activity_category_details.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/activity_details.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/activity_main.xml" value="0.15353260869565216" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/category_details_view.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/category_view.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/custom_player_control.xml" value="0.11096014492753623" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/LiveTVApp/app/src/main/res/layout/home_layout.xml" value="0.10099637681159421" />
